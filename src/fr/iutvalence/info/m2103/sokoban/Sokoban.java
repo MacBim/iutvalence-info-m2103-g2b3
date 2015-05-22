@@ -147,11 +147,7 @@ public class Sokoban {
 		int levelNumber = this.player.askLevelToPlay();
 		int turn = 0;
 		
-		try {
-			this.setLevel(new MapLoader(Level.getLevels()[levelNumber], levelNumber).load());
-		} catch (PlayerNotPlacedException e) {
-			e.printStackTrace();
-		}
+			this.setLevel(new Level());
 		
 		this.display.displayMessage("Level " + this.level.getLevelNumber());
 
