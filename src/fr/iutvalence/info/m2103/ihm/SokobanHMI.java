@@ -12,6 +12,7 @@ import javax.swing.*;
 public class SokobanHMI implements Runnable, ActionListener
 {	
 	private JFrame window;
+	private JPanel mainPanel;
 	
 	private JMenuItem menuItemClose;
 	
@@ -23,13 +24,10 @@ public class SokobanHMI implements Runnable, ActionListener
 	public void run()
 	{
 		this.window = new JFrame();
-		this.gamePanel = new GamePanel();
 		this.window.setTitle("Sokoban");
-		this.window.setSize(600, 600);
-		
-		
+		this.window.setSize(1200, 600);
+		this.window.setResizable(false);
 		this.window.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-		
 		JMenuBar menuBar = new JMenuBar();
 		JMenu menu = new JMenu("Menu");
 		this.menuItemLevels = new JMenuItem("Levels Choice");
@@ -38,11 +36,16 @@ public class SokobanHMI implements Runnable, ActionListener
 		this.window.setJMenuBar(menuBar);
 		
 		
-		JButton bouton = new JButton();
-		this.window.getContentPane().add(bouton);
-		JButton bouton2 = new JButton();
-		this.window.getContentPane().add(bouton2);
-		this.gamePanel.addButtonGrid(8, 8, 64);
+		this.mainPanel = new JPanel();
+		this.gamePanel = new GamePanel(8,8,64);
+		this.controlPannel = new ControlPanel();
+		/**
+		this.mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.X_AXIS));
+		 */
+		this.mainPanel.setLayout(new GridLayout(1, 2,10,0));
+		this.mainPanel.add(this.gamePanel);
+		this.mainPanel.add(this.controlPannel);
+		this.window.add(this.mainPanel);
 		
 		
 		
@@ -63,8 +66,14 @@ public class SokobanHMI implements Runnable, ActionListener
 		
 	}
 	
-
-
-
-	
+	public void addButtonGrid(int numberOfLine, int numberOfColumns, int numberOfButtons)
+	{
+		this.window.setLayout(new GridLayout(numberOfLine, numberOfColumns));
+		for(int buttonIndex=0; buttonIndex<numberOfButtons; buttonIndex++)
+		{
+			JButton bouton = new JButton();
+			bouton.setFocusable(false);
+			this.window.add(bouton);
+		}
+	}
 }

@@ -7,23 +7,18 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-public class GamePanel
+public class GamePanel extends JPanel
 {
 	private JPanel gamePanel;
 	
-	public GamePanel()
+	public GamePanel(int numberOfLine, int numberOfColumns, int numberOfButtons)
 	{
-		
-	}
-	
-	public void addButtonGrid(int numberOfLine, int numberOfColumns, int numberOfButtons)
-	{
-		this.gamePanel.setLayout(new GridLayout(numberOfLine, numberOfColumns));
-		for(int buttonIndex=0; buttonIndex<62; buttonIndex++)
+		this.setLayout(new GridLayout(numberOfLine, numberOfColumns));
+		for(int buttonIndex=0; buttonIndex<numberOfButtons; buttonIndex++)
 		{
-			JButton bouton = new JButton();
+			JButton bouton = new JButton(String.valueOf(buttonIndex));
 			bouton.setFocusable(false);
-			this.gamePanel.add(bouton);
+			this.add(bouton);
 		}
 	}
 }
