@@ -9,40 +9,35 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * The ControlPanel class
+ * @author mercieje
+ *
+ */
 public class ControlPanel extends JPanel
 {	
-	
+	/**
+	 * The controlPanel contructor
+	 */
 	public  ControlPanel()
 	{
 		
-		this.setLayout(new GridLayout(2, 2,50,50));
-		
-		this.setSize(new Dimension(200, 200));
-		
-		
+		this.setLayout(new GridLayout(4, 1,50,50));
 		
 		JButton upButton = new JButton("Up");
 		upButton.setSize(new Dimension(10, 10));
 		this.add(upButton);
 		
-		JButton leftButton = new JButton("left");
-		leftButton.setSize(new Dimension(10, 20));
-		this.add(leftButton);
-		
-		JButton downButton = new JButton("down");
-		downButton.setSize(new Dimension(10, 20));
+		JButton downButton = new JButton("Down");
+		downButton.setSize(new Dimension(10, 10));
 		this.add(downButton);
 		
+		JButton leftButton = new JButton("Left");
+		leftButton.setSize(new Dimension(10, 10));
+		this.add(leftButton);
 		
-		JButton rightButton = new JButton("right");
-		rightButton.setSize(new Dimension(10, 20));
+		JButton rightButton = new JButton("Right");
+		rightButton.setSize(new Dimension(10, 10));
 		this.add(rightButton);
-		
-		
-		/**
-		this.add(new Button("left"));
-		this.add(new Button("Up"));
-		this.add(new Button("Up"));
-		*/
 	}
 }

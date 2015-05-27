@@ -11,9 +11,17 @@ import javax.swing.*;
 
 public class SokobanHMI implements Runnable, ActionListener
 {	
+	/**
+	 * The window of the game
+	 */
 	private JFrame window;
-	private JPanel mainPanel;
-	
+	/**
+	 * the main panel which contain the gamePanel and the controlPanel
+	 */
+	private JSplitPane mainPanel;
+	/**
+	 * The menuItem which close the window
+	 */
 	private JMenuItem menuItemClose;
 	
 	private JMenuItem menuItemLevels;
@@ -25,32 +33,32 @@ public class SokobanHMI implements Runnable, ActionListener
 	{
 		this.window = new JFrame();
 		this.window.setTitle("Sokoban");
-		this.window.setSize(1200, 600);
+		this.window.setSize(800, 600);
 		this.window.setResizable(false);
 		this.window.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		
+		
 		JMenuBar menuBar = new JMenuBar();
 		JMenu menu = new JMenu("Menu");
 		this.menuItemLevels = new JMenuItem("Levels Choice");
 		this.menuItemLevels.addActionListener(this);
+		this.menuItemClose = new JMenuItem("Close");
+		this.menuItemClose.addActionListener(this);
 		menuBar.add(this.menuItemLevels);
+		menuBar.add(this.menuItemClose);
 		this.window.setJMenuBar(menuBar);
 		
 		
-		this.mainPanel = new JPanel();
+		this.mainPanel = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
+		this.mainPanel.setDividerLocation(600);
 		this.gamePanel = new GamePanel(8,8,64);
 		this.controlPannel = new ControlPanel();
-		/**
-		this.mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.X_AXIS));
-		 */
-		this.mainPanel.setLayout(new GridLayout(1, 2,10,0));
-		this.mainPanel.add(this.gamePanel);
-		this.mainPanel.add(this.controlPannel);
+
+		this.mainPanel.setLeftComponent(this.gamePanel);
+		this.mainPanel.setRightComponent(this.controlPannel);
+		
+		
 		this.window.add(this.mainPanel);
-		
-		
-		
-		
-		
 		this.window.setVisible(true);
 	}
 
@@ -63,17 +71,10 @@ public class SokobanHMI implements Runnable, ActionListener
 			JOptionPane.showMessageDialog(this.window, "No levels yet", "Levels Choice", JOptionPane.INFORMATION_MESSAGE);
 			return;
 		}
-		
-	}
-	
-	public void addButtonGrid(int numberOfLine, int numberOfColumns, int numberOfButtons)
-	{
-		this.window.setLayout(new GridLayout(numberOfLine, numberOfColumns));
-		for(int buttonIndex=0; buttonIndex<numberOfButtons; buttonIndex++)
+		if(selectionnedItem == this.menuItemClose)
 		{
-			JButton bouton = new JButton();
-			bouton.setFocusable(false);
-			this.window.add(bouton);
+			this.window.dispose();
 		}
+		
 	}
 }
