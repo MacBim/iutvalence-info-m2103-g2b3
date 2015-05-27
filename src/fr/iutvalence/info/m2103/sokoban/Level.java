@@ -279,7 +279,6 @@ public class Level {
 					continue;
 				}
 				str += this.fixedElements[line][column];
-				
 			}
 			str += "\n";
 		}
