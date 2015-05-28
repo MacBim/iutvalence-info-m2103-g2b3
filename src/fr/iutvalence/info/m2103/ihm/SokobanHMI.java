@@ -75,6 +75,21 @@ public class SokobanHMI implements Runnable, ActionListener
 		{
 			this.window.dispose();
 		}
-		
 	}
+	
+	public void modifyLabel(String[][] map)
+	{
+		String str ="";
+		for(int line=0;line<8; line++)
+		{
+			for(int column=0;column<8;column++)
+			{
+				str += map[line][column].charAt(column);
+				this.gamePanel.getButton(line, column).setLabel(str);
+			}
+		}
+	}
+
+
+	
 }

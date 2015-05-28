@@ -1,5 +1,8 @@
 package fr.iutvalence.info.m2103.sokoban;
 
+import javax.swing.SwingUtilities;
+
+import fr.iutvalence.info.m2103.ihm.*;
 import fr.iutvalence.info.m2103.exceptions.PlayerNotPlacedException;
 import fr.iutvalence.info.m2103.interfaces.Display;
 import fr.iutvalence.info.m2103.interfaces.PlayerInteraction;
@@ -35,6 +38,7 @@ public class Sokoban {
 	 */
 	private Display display;
 	
+	private SokobanHMI HMI;
 	/**
 	 * Create a new Sokoban
 	 * @param player The player
@@ -44,6 +48,7 @@ public class Sokoban {
 		this.level = null;
 		this.player = player;
 		this.display = display;
+		this.HMI = new SokobanHMI();
 	}
 
 	/**
@@ -143,7 +148,6 @@ public class Sokoban {
 	public void play() {
 		
 		this.display.displayStartingMessage();
-		
 		int levelNumber = this.player.askLevelToPlay();
 		int turn = 0;
 		
@@ -155,7 +159,8 @@ public class Sokoban {
 		{
 			
 			this.display.displayMessage(this.level.toString());
-			
+			this.HMI.modifyLabel(this.display.displayMap(this.level.toString()));
+			SwingUtilities.invokeLater(this.HMI);
 			if(this.isGameFinished()){
 				this.display.displayWinMessage(turn);
 				this.player.askToQuit();

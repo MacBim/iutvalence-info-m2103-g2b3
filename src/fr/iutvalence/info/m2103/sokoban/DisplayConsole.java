@@ -25,5 +25,20 @@ public class DisplayConsole implements Display{
 	public void displayWinMessage(int turn) {
 		this.displayMessage("Won in " + turn + "turns !");
 	}
+	
+	public String[][] displayMap(String level)
+	{
+		int pos=0;
+		String[][] map = new String[8][8];
+		for(int lineIndex=0; lineIndex<8; lineIndex++)
+		{
+			for(int columnIndex=0; columnIndex<8; columnIndex++)
+			{
+				pos=+ columnIndex;
+				map[lineIndex][columnIndex] += level.charAt(pos);
+			}
+		}
+		return map;
+	}
 
 }

@@ -1,9 +1,9 @@
 package fr.iutvalence.info.m2103.ihm;
 
-import java.awt.Button;
+import fr.iutvalence.info.m2103.sokoban.*;
+
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 
 import javax.swing.*;
 
@@ -14,10 +14,17 @@ import javax.swing.*;
  */
 public class GamePanel extends JPanel
 {
+	private static final int NUMBER_OF_LINES = 8;
+
+	private static final int NUMBER_OF_COLUMNS = 8;
+
 	/**
-	 * The panel where the buttons will be
+	 * The panel where the buttons will  be
 	 */
 	private JPanel gamePanel;
+	
+	private JButton[][] gameBoard;
+	
 	
 	/**
 	 * The game panel constructor
@@ -27,13 +34,23 @@ public class GamePanel extends JPanel
 	 */
 	public GamePanel(int numberOfLine, int numberOfColumns, int numberOfButtons)
 	{
+		
 		this.setLayout(new GridLayout(numberOfLine, numberOfColumns));
-		for(int buttonIndex=0; buttonIndex<numberOfButtons; buttonIndex++)
+		this.gameBoard = new JButton[NUMBER_OF_LINES][NUMBER_OF_COLUMNS];
+		for(int buttonLineIndex=0; buttonLineIndex<NUMBER_OF_LINES; buttonLineIndex++)
 		{
-			
-			JButton bouton = new JButton();
-			bouton.setFocusable(false);
-			this.add(bouton);
+			for(int buttonColumnIndex=0; buttonColumnIndex<NUMBER_OF_COLUMNS; buttonColumnIndex++)
+			{
+				JButton bouton = new JButton();
+				this.gameBoard[buttonLineIndex][buttonColumnIndex] = bouton;
+				bouton.setFocusable(false);
+				this.add(bouton);
+			}
 		}
+	}
+	
+	public JButton getButton(int line, int column)
+	{
+		return this.gameBoard[line][column];
 	}
 }

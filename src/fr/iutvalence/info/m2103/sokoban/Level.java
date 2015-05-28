@@ -255,18 +255,23 @@ public class Level {
 	public String toString() {
 		String str = "";
 		boolean boxHasBeenPlaced = false;
-		for (int line = 0; line < this.fixedElements.length; line++) {
-			for (int column = 0; column < this.fixedElements[0].length; column++) {
+		for (int line = 0; line < this.fixedElements.length; line++) 
+		{
+			for (int column = 0; column < this.fixedElements[0].length; column++) 
+			{
 				Position pos = new Position(line, column);
-				if(pos.equals(this.characterPosition)){
+				if(pos.equals(this.characterPosition))
+				{
 					if(this.getFixedMapElement(pos) == FixedMapElement.TARGET)
 						str += CHARACTER_REPRESENTATION_ON_TARGET;
 					else
 						str += CHARACTER_REPRESENTATION;
 					continue;
 				}
-				for (Position boxPosition : this.boxPositions) {
-					if(boxPosition.equals(pos)){
+				for (Position boxPosition : this.boxPositions) 
+				{
+					if(boxPosition.equals(pos))
+					{
 						if(this.getFixedMapElement(pos) == FixedMapElement.TARGET)
 							str += BOX_REPRESENTATION_ON_TARGET;
 						else
@@ -274,7 +279,8 @@ public class Level {
 						boxHasBeenPlaced = true;
 					}
 				}
-				if(boxHasBeenPlaced){
+				if(boxHasBeenPlaced)
+				{
 					boxHasBeenPlaced = false;
 					continue;
 				}

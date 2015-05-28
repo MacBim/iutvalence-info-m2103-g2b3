@@ -1,5 +1,7 @@
 package fr.iutvalence.info.m2103.interfaces;
 
+import fr.iutvalence.info.m2103.sokoban.Level;
+
 /**
  * Manages the display of the game
  */
@@ -22,4 +24,6 @@ public interface Display {
 	 */
 	public void displayWinMessage(int turn);
 	
+	
+	public String[][] displayMap(String level);
 }
